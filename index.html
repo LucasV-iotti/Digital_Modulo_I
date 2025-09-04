@@ -1,0 +1,142 @@
+
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Atendimento Pro — Contato Digital (V7.1.4 — Módulo I)</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="theme-dark">
+  <div class="topbar">
+    <div class="brand">
+      <div class="logo">AP</div>
+      <div class="title">
+        <strong>Atendimento Pro</strong>
+        <span>Contato Digital — Treinamento</span>
+      </div>
+    </div>
+    <div class="actions">
+      <div id="themeToggle" class="segmented" role="tablist" aria-label="Tema">
+        <button type="button" data-theme="dark" class="active" role="tab" aria-selected="true">Escuro</button>
+        <button type="button" data-theme="light" role="tab" aria-selected="false">Claro</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="app">
+    <!-- START -->
+    <section id="start-screen" class="screen active" aria-labelledby="start-title">
+      <div class="card hero">
+        <div class="hero-left">
+          <h1 id="start-title">Treino de Chat com Personalidade <span>✨</span></h1>
+          <p class="subtitle">Onboarding para contato digital: empatia, segurança de dados e solução objetiva.</p>
+          <form class="form" onsubmit="return false;">
+            <div class="row">
+              <div class="col">
+                <label for="playerName">Nome</label>
+                <input id="playerName" type="text" placeholder="Digite seu nome" autocomplete="name" />
+              </div>
+              <div class="col">
+                <label for="playerCPF">CPF</label>
+                <input id="playerCPF" type="text" inputmode="numeric" placeholder="000.000.000-00" />
+              </div>
+            </div>
+            <div class="row end">
+              <button id="btnStart" class="primary" type="button">Começar</button>
+            </div>
+          </form>
+          <p class="tip">Dica: use <strong>1–4</strong> para responder rápido. O objetivo aparece na lateral.</p>
+        </div>
+        <div class="hero-right">
+          <div class="phone-mock" aria-hidden="true">
+            <div class="mock-header">
+              <div class="mock-avatar">C</div>
+              <div class="mock-info">
+                <div><strong>Cliente</strong></div>
+                <small>online</small>
+              </div>
+              <div class="mock-meta">Hoje</div>
+            </div>
+            <div class="mock-body">
+              <div class="bubble left">Oi! Preciso de ajuda 👋</div>
+              <div class="bubble right">Olá! Vou te ajudar, tudo bem? ✅</div>
+              <div class="bubble left">Meu pedido atrasou 🙁</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GAME -->
+    <section id="game-screen" class="screen" aria-label="Jogo">
+      <div class="layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" aria-label="Informações do caso">
+          <div class="panel objective">
+            <h3>Objetivo do atendimento</h3>
+            <div id="ticketGoal" class="goal-text">—</div>
+            <p id="caseSummary" class="small muted">—</p>
+          </div>
+          <div class="panel">
+            <h4 style="margin:0 0 8px">Competências</h4>
+            <div class="summary mini">
+              <div class="metric"><div>Empatia</div><strong id="kEmpatia">0</strong></div>
+              <div class="metric"><div>Resolução</div><strong id="kResolucao">0</strong></div>
+              <div class="metric"><div>Tempo</div><strong id="kTempo">0</strong></div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Chat area -->
+        <main class="main">
+          <div class="chat" aria-live="polite">
+            <header class="chat-header">
+              <div class="left">
+                <div class="avatar sm">C</div>
+                <div>
+                  <div id="headerCust"><strong>Cliente</strong></div>
+                  <div id="headerStatus" class="label-inline">online</div>
+                </div>
+              </div>
+            </header>
+
+            <div id="chatWindow" class="chat-window">
+              <div class="day-sep"><span>Hoje</span></div>
+            </div>
+
+            <div class="footer">
+              <div id="typing" class="typing hidden" aria-hidden="true">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              </div>
+              <div class="options-wrap">
+                <div class="options" id="options" aria-label="Respostas rápidas"></div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </section>
+
+    <!-- END -->
+    <section id="end-screen" class="screen" aria-label="Resumo da sessão">
+      <div class="card end">
+        <h2 style="margin:0 0 10px">Turno concluído</h2>
+        <p class="muted">Resumo das competências</p>
+        <div class="summary">
+          <div class="metric"><div>Empatia</div><strong id="sumEmpatia">0</strong></div>
+          <div class="metric"><div>Resolução</div><strong id="sumResolucao">0</strong></div>
+          <div class="metric"><div>Tempo</div><strong id="sumTempo">0</strong></div>
+          <div class="metric"><div>Total</div><strong id="sumTotal">0</strong></div>
+        </div>
+        <div class="total">Medalha: <span id="medal">🏆</span></div>
+        <div class="actions"><button id="btnReplay" type="button">Jogar novamente</button></div>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
