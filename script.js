@@ -36,9 +36,9 @@ const MISSAO_I = {
         rude:'Diz logo o que é. Não posso perder tempo.'
       },
       options:[
-        { text:'Seja bem-vindo! Para seguirmos com segurança, confirma seu nome e apenas os dois últimos dígitos do CPF, combinado?', next:'valida_pf_minima', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+6}, tag:'best' },
+        { text:'Seja bem-vindo! Para seguirmos com segurança, me confirme seu nome e os dois últimos dígitos do CPF, combinado?', next:'valida_pf_minima', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+6}, tag:'best' },
         { text:'Perfeito! Para sua segurança conforme a política, confirme seu nome e os dois dígitos finais do CPF, tudo bem?', next:'valida_pf_minima', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+5}, tag:'very_good' },
-        { text:'Pra agilizar, confirma seu nome e os quatro últimos dígitos do CPF (conforme LGPD)?', next:'alerta_lgpd', effects:{empatia:-1,resolucao:0,tempo:+1,satisf:-10}, tag:'trap_compliance' },
+        { text:'Pra agilizar, me confirma seu nome e os quatro últimos dígitos do CPF (conforme LGPD)?', next:'alerta_lgpd', effects:{empatia:-1,resolucao:0,tempo:+1,satisf:-10}, tag:'trap_compliance' },
         { text:'Vamos direto ao ponto? Me diz o problema e depois validamos o resto.', next:'friction_tom', effects:{empatia:-1,resolucao:+1,tempo:+1,satisf:-6}, tag:'trap_tone' }
       ]
     },
@@ -105,7 +105,7 @@ const MISSAO_I = {
         rude:'Fala logo.'
       },
       options:[
-        { text:'Tenho uma condição especial válida até a data combinada. Posso detalhar e seguimos?', next:'tabulacao_intro', effects:{resolucao:+1,tempo:+1,satisf:+4}, tag:'best' },
+        { text:'Tenho uma condição especial válida até o dia XX. Posso detalhar e seguimos?', next:'tabulacao_intro', effects:{resolucao:+1,tempo:+1,satisf:+4}, tag:'best' },
         { text:'Seguimos rápido: se fechar hoje, te passo a condição, senão perde a oportunidade.', next:'friction_tom', effects:{empatia:-3,resolucao:-1,tempo:0,satisf:-16}, tag:'trap_pressure' },
         { text:'Explico as condições e, se fizer sentido, combinamos uma data realista?', next:'tabulacao_intro', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+4}, tag:'very_good' },
         { text:'Posso pular detalhes pra não tomar seu tempo e já marcar a data?', next:'tabulacao_intro', effects:{empatia:-1,resolucao:0,tempo:+2,satisf:-4}, tag:'trap_time' }
@@ -354,7 +354,7 @@ function handleNegotiationAutoReply() {
   let response = ''; let nextKey  = '';
   if (tone === 'happy') { response = 'Perfeito! Aceito a proposta. 😊'; nextKey  = 'tabulacao_intro'; }
   else if (tone === 'neutral') { response = 'Ok, podemos seguir com essa proposta.'; nextKey  = 'tabulacao_intro'; }
-  else if (tone === 'annoyed') { response = 'Prefiro não aceitar agora, mas pode registrar.'; nextKey  = 'tabulacao_intro'; }
+  else if (tone === 'annoyed') { response = 'Prefiro não aceitar agora, anotar em sistema.'; nextKey  = 'tabulacao_intro'; }
   else { response = 'Não quero seguir com isso. Encerrando.'; nextKey  = 'wrapup_ok'; }
   typing(true);
   setTimeout(() => { typing(false); renderCustomerMessage(response); proceedToNode(nextKey); }, 600);
