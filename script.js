@@ -35,7 +35,7 @@ const MISSAO_I = {
         rude:'Diz logo o que é. Não posso perder tempo.'
       },
       options:[
-        { text:'Seja bem-vindo! Para seguirmos com segurança, confirmo seu nome e apenas os dois últimos dígitos do CPF, combinado?', next:'valida_pf_minima', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+6}, tag:'best' },
+        { text:'Seja bem-vindo! Para seguirmos com segurança, confirma seu nome e apenas os dois últimos dígitos do CPF, combinado?', next:'valida_pf_minima', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+6}, tag:'best' },
         { text:'Perfeito! Para sua segurança conforme a política, confirme seu nome e os dois dígitos finais do CPF, tudo bem?', next:'valida_pf_minima', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+5}, tag:'very_good' },
         { text:'Pra agilizar, confirma seu nome e os quatro últimos dígitos do CPF (conforme LGPD)?', next:'alerta_lgpd', effects:{empatia:-1,resolucao:0,tempo:+1,satisf:-10}, tag:'trap_compliance' },
         { text:'Vamos direto ao ponto? Me diz o problema e depois validamos o resto.', next:'friction_tom', effects:{empatia:-1,resolucao:+1,tempo:+1,satisf:-6}, tag:'trap_tone' }
@@ -63,7 +63,7 @@ const MISSAO_I = {
         rude:'Ana. 34. E aí?'
       },
       options:[
-        { text:'Obrigado, Ana! Posso validar o canal preferido (WhatsApp, e-mail ou telefone)?', next:'cadok_intro', effects:{empatia:+1,tempo:+1,satisf:+6}, tag:'best' },
+        { text:'Obrigado, Ana! Apenas para validar, me informe o melhor canal e horário de contato?', next:'cadok_intro', effects:{empatia:+1,tempo:+1,satisf:+6}, tag:'best' },
         { text:'Perfeito. Para confirmar direitinho, informa o CPF completo? É rapidinho.', next:'alerta_lgpd', effects:{empatia:-2,resolucao:0,tempo:0,satisf:-12}, tag:'trap_doc' },
         { text:'Obrigado! Pra não tomar seu tempo, seguimos sem validar contatos agora, pode ser?', next:'cadok_pula', effects:{empatia:-1,resolucao:+1,tempo:+1,satisf:-4}, tag:'trap_skip' },
         { text:'Legal! Atualizo o contato depois e já te apresento as condições.', next:'cadok_pula', effects:{empatia:0,resolucao:+1,tempo:+1,satisf:-3}, tag:'ok' }
@@ -77,7 +77,7 @@ const MISSAO_I = {
         rude:'Só manda no Whats.'
       },
       options:[
-        { text:'Anotado! Registrar WhatsApp à tarde como preferido. Posso confirmar e-mail (terminando em @exemplo.com) e celular final 7788?', next:'cadok_confirm', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+6}, tag:'best' },
+        { text:'Anotado! Registrei WhatsApp à tarde como preferido. Posso confirmar e-mail (terminando em @exemplo.com) e celular final 7788?', next:'cadok_confirm', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+6}, tag:'best' },
         { text:'Perfeito. Confirma pra mim o e-mail completo e o número de celular com DDD?', next:'cadok_confirm', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+4}, tag:'very_good' },
         { text:'Pra validar, manda os 6 últimos do cartão e o CPF inteiro (política interna).', next:'alerta_lgpd', effects:{empatia:-3,resolucao:-1,tempo:0,satisf:-18}, tag:'trap_compliance' },
         { text:'Vamos seguindo sem checar isso agora pra ganhar tempo.', next:'cadok_pula', effects:{empatia:-1,resolucao:+1,tempo:+1,satisf:-6}, tag:'trap_skip' }
@@ -114,7 +114,7 @@ const MISSAO_I = {
       agentAuto:'Antes de encerrar, vou registrar o atendimento (tabulação) com clareza para dar continuidade quando precisar.',
       customerVariants:{
         happy:'Legal! O que você vai registrar?',
-        neutral:'Ok. O que será tabulado?',
+        neutral:'Ok. O que será registrado?',
         annoyed:'Tá… e o que você vai anotar?',
         rude:'E daí? O que vai anotar?'
       },
@@ -154,7 +154,7 @@ const MISSAO_I = {
     cadok_pula:{
       customerVariants:{
         happy:'Ok, mas prefiro que atualizem meu WhatsApp depois.',
-        neutral:'Tudo bem.',
+        neutral:'Não vai atualizar meu contato!?',
         annoyed:'Eu queria ajustar meu contato, mas tudo bem…',
         rude:'Vocês nem checaram meus dados.'
       },
@@ -194,9 +194,71 @@ function proceedToNode(key){ state.currentNodeKey=key; const node=nodeByKey(key)
 
 function startScenario(){ state.metrics={ empatia:0, resolucao:0, tempo:0, total:0 }; state.satisfaction=50; updateMetricsUI(); document.querySelector('#ticketGoal').textContent='Abordagem diferenciada • CadOK (atualização) • Tabulação correta • Finalização empática'; document.querySelector('#caseSummary').textContent=currentScenario().summary; document.querySelector('#chatWindow').innerHTML='<div class="day-sep"><span>Hoje</span></div>'; document.querySelector('#headerCust').textContent='Cliente'; document.querySelector('#headerStatus').textContent='online'; state.currentNodeKey=currentScenario().startNode; const first = nodeByKey(state.currentNodeKey).customerVariants?.['neutral'] ?? 'Olá!'; renderCustomerMessage(first); renderOptions(nodeByKey(state.currentNodeKey).options); }
 
+function chooseOption(index){ const node=nodeByKey(state.currentNodeKey); const opt=node.options[index]; if(!opt) return; renderAgentMessage(opt.text);
+
+    if (opt.tag) {
+        let feedback = '';
+        if (opt.tag === 'best' || opt.tag === 'very_good') {
+            feedback = '✅ Boa escolha!';
+        } else if (opt.tag.startsWith('trap')) {
+            feedback = '⚠️ Cuidado: essa opção tem problemas.';
+        } else {
+            feedback = 'ℹ️ Opção registrada.';
+        }
+        const el = document.createElement('div');
+        el.className = 'msg agent';
+        el.innerHTML = `${escapeHtml(feedback)}<div class="meta"><span>${nowTime()}</span><span class="status">• feedback</span></div>`;
+        const w = document.querySelector('#chatWindow');
+        w.appendChild(el);
+        w.scrollTop = w.scrollHeight;
+    }
+
+
+    if (state.currentNodeKey === 'oferta_negociacao') {
+        const tone = state.satisfaction >= 75 ? 'happy' :
+                     state.satisfaction >= 50 ? 'neutral' :
+                     state.satisfaction >= 25 ? 'annoyed' : 'rude';
+        let response = '';
+        let nextKey = '';
+        if (tone === 'happy') {
+            response = 'Perfeito! Vamos seguir com essa proposta. 😊';
+            nextKey = 'tabulacao_intro';
+        } else if (tone === 'neutral') {
+            response = 'Certo, podemos seguir com isso.';
+            nextKey = 'tabulacao_intro';
+        } else if (tone === 'annoyed') {
+            response = 'Não sei se essa proposta me atende…';
+            nextKey = 'tabulacao_intro';
+        } else {
+            response = 'Não quero seguir com isso. Encerrando.';
+            nextKey = 'wrapup_ok';
+        }
+        typing(true);
+        setTimeout(() => {
+            typing(false);
+            renderCustomerMessage(response);
+            proceedToNode(nextKey);
+        }, 600);
+        return;
+    }
+
+
 function setScreen(id){ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active')); const d=document.querySelector(id); if(d) d.classList.add('active'); }
 function finishScenario(){ computeTotal(); document.querySelector('#endEmpatia').textContent=state.metrics.empatia; document.querySelector('#endResolucao').textContent=state.metrics.resolucao; document.querySelector('#endTempo').textContent=state.metrics.tempo; document.querySelector('#endTotal').textContent=state.metrics.total; document.querySelector('#endMedalha').textContent=medalFromScore(); }
 
 function bind(){ const start=()=>{ setScreen('#game-screen'); startScenario(); }; document.querySelector('#btnStart')?.addEventListener('click', start); document.querySelector('#playerName')?.addEventListener('keydown', e=>{ if(e.key==='Enter') start(); }); document.querySelector('#playerCPF')?.addEventListener('keydown', e=>{ if(e.key==='Enter') start(); }); document.querySelector('#themeToggle')?.addEventListener('click', (ev)=>{ const b=ev.target.closest('button'); if(!b) return; document.querySelectorAll('#themeToggle button').forEach(x=>x.classList.remove('active')); b.classList.add('active'); const t=b.dataset.theme; document.body.classList.toggle('theme-light', t==='light'); }); document.querySelector('#btnReplay')?.addEventListener('click', ()=>{ setScreen('#start-screen'); }); const cpfInput=document.querySelector('#playerCPF'); if(cpfInput){ const m=(e)=>{ e.target.value = formatCPF(e.target.value); }; cpfInput.addEventListener('input', m); cpfInput.addEventListener('blur', m); } document.addEventListener('keydown',(e)=>{ const gameVisible = document.querySelector('#game-screen').classList.contains('active'); if(!gameVisible) return; const n=parseInt(e.key,10); if(n>=1 && n<=4){ const btn=document.querySelector(`#options .option:nth-child(${n})`); if(btn){ e.preventDefault(); btn.click(); }} if(e.key==='Enter'){ const focused=document.activeElement; if(focused?.classList.contains('option')){ e.preventDefault(); focused.click(); }} }); }
 
 document.addEventListener('DOMContentLoaded', bind);
+
+
+  // Mostra "digitando...", exibe a resposta do cliente e navega
+  typing(true);
+  setTimeout(() => {
+    typing(false);
+    renderCustomerMessage(response);
+    proceedToNode(nextKey);
+  }, 600);
+
+  // Indica que tratamos a navegação daqui
+  return true;
+}
