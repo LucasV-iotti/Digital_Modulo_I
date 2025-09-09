@@ -40,7 +40,7 @@ const MISSAO_I = {
     abordagem_inicio_pf:{
       customerVariants:{
         happy:'Oi! Tudo bem? Recebi sua mensagem. Sobre o que se trata? 😊',
-        neutral:'Oi. preciso de ajuda com uma situação',
+        neutral:'Oi. preciso de ajuda com um débito.',
         annoyed:'Oi. Fala direto, por favor. Tô sem tempo.',
         rude:'Diz logo o que é. Não posso perder tempo.'
       },
