@@ -40,7 +40,7 @@ const MISSAO_I = {
     abordagem_inicio_pf:{
       customerVariants:{
         happy:'Oi! Tudo bem? Recebi sua mensagem. Sobre o que se trata? 😊',
-        neutral:'Oi. Em que posso ajudar?',
+        neutral:'Oi. preciso de ajuda com uma situação',
         annoyed:'Oi. Fala direto, por favor. Tô sem tempo.',
         rude:'Diz logo o que é. Não posso perder tempo.'
       },
@@ -75,10 +75,10 @@ const MISSAO_I = {
         rude:'Fala logo.'
       },
       options:[
-        { text:'Tenho uma condição especial válida até a data combinada. Posso detalhar e seguimos?', next:'proposta_resposta', effects:{resolucao:+1,tempo:+1,satisf:+4}, tag:'best' },
+        { text:'Tenho uma condição especial válida até a hoje. Posso detalhar e seguimos?', next:'proposta_resposta', effects:{resolucao:+1,tempo:+1,satisf:+4}, tag:'best' },
         { text:'Seguimos rápido: se fechar hoje, te passo a condição, senão perde a oportunidade.', next:'friction_tom', effects:{empatia:-3,resolucao:-1,tempo:0,satisf:-16}, tag:'trap_pressure' },
-        { text:'Explico as condições e, se fizer sentido, combinamos uma data realista?', next:'proposta_resposta', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+4}, tag:'very_good' },
-        { text:'Posso pular detalhes pra não tomar seu tempo e já marcar a data?', next:'proposta_resposta', effects:{empatia:-1,resolucao:0,tempo:+2,satisf:-4}, tag:'trap_time' }
+        { text:'Explico as condições e, se fizer sentido, combinamos até o dia XX?', next:'proposta_resposta', effects:{empatia:+1,resolucao:-2,tempo:+1,satisf:+4}, tag:'very_good' },
+        { text:'Posso pular detalhes pra não tomar seu tempo e já marcar a data de hoje?', next:'proposta_resposta', effects:{empatia:-1,resolucao:0,tempo:+2,satisf:-4}, tag:'trap_time' }
       ]
     },
 
@@ -90,7 +90,7 @@ const MISSAO_I = {
         rude:'Se for pra falar, seja direto.'
       },
       options:[
-        { text:'Perfeito, [Nome]! Proposta: condição especial válida até a data combinada, envio pelo seu canal preferido. Posso registrar?', next:'cadok_intro', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+5}, tag:'best' },
+        { text:'Perfeito, [Nome]! Tenho uma condição especial válida até a data de hoje, posso te enviar por onde?', next:'cadok_intro', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+5}, tag:'best' },
         { text:'Resumo da proposta: condição especial + prazo alinhado. Te envio por WhatsApp/e-mail e seguimos. Pode ser?', next:'cadok_intro', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+4}, tag:'very_good' },
         { text:'Proposta: podemos fechar hoje? Senão perdemos a condição.', next:'cadok_intro', effects:{empatia:-2,resolucao:-1,tempo:0,satisf:-10}, tag:'trap_pressure' },
         { text:'Te envio um resumo da proposta e você valida depois. Tudo bem?', next:'cadok_intro', effects:{empatia:0,resolucao:0,tempo:+1,satisf:+1}, tag:'ok' }
@@ -127,7 +127,7 @@ const MISSAO_I = {
     tabulacao_intro:{
       agentAuto:'Antes de encerrar, vou registrar o atendimento (tabulação) com clareza para continuidade quando precisar.',
       customerVariants:{
-        happy:'Legal! O que você vai registrar?',
+        happy:'Legal! O que você será registrado?',
         neutral:'Ok. O que será registrado?',
         annoyed:'Tá… e o que você vai anotar?',
         rude:'E daí? O que vai anotar?'
