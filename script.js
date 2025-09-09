@@ -47,10 +47,10 @@ const MISSAO_I = {
         rude:'Diz logo o que é. Não posso perder tempo.'
       },
       options:[
-        { text:'Claro! Posso te apresentar rapidamente a oportunidade e, se fizer sentido, seguimos?', next:'oferta_negociacao', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+5}, tag:'best' },
-        { text:'Posso resumir a oferta e depois alinhamos os próximos passos?', next:'oferta_negociacao', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+4}, tag:'very_good' },
-        { text:'Posso pular direto para a proposta?', next:'oferta_negociacao', effects:{empatia:0,resolucao:+1,tempo:+1,satisf:+1}, tag:'ok' },
-        { text:'Vamos direto: diga o problema agora e depois eu vejo o resto.', next:'friction_tom', effects:{empatia:-2,resolucao:+1,tempo:+1,satisf:-8}, tag:'trap_tone' }
+        { text:'Quero te apresentar rapidamente uma oportunidade e, se fizer sentido, seguimos?', next:'oferta_negociacao', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+5}, tag:'best' },
+        { text:'Posso resumir uma oferta e depois alinhamos os próximos passos?', next:'oferta_negociacao', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+4}, tag:'very_good' },
+        { text:'Que tal fecharmos um acordo?', next:'oferta_negociacao', effects:{empatia:0,resolucao:+1,tempo:+1,satisf:+1}, tag:'ok' },
+        { text:'Vamos direto ao ponto: quer negociar?', next:'friction_tom', effects:{empatia:-2,resolucao:+1,tempo:+1,satisf:-8}, tag:'trap_tone' }
       ]
     },
     alerta_lgpd:{
@@ -90,10 +90,10 @@ const MISSAO_I = {
         rude:'Fala logo.'
       },
       options:[
-        { text:'Tenho uma condição especial válida até a data combinada. Posso detalhar e seguimos?', next:'tabulacao_intro', effects:{resolucao:+1,tempo:+1,satisf:+4}, tag:'best' },
+        { text:'Tenho uma condição especial válida até hoje. Posso detalhar e seguimos?', next:'tabulacao_intro', effects:{resolucao:+1,tempo:+1,satisf:+4}, tag:'best' },
         { text:'Seguimos rápido: se fechar hoje, te passo a condição, senão perde a oportunidade.', next:'friction_tom', effects:{empatia:-3,resolucao:-1,tempo:0,satisf:-16}, tag:'trap_pressure' },
-        { text:'Explico as condições e, se fizer sentido, combinamos uma data realista?', next:'tabulacao_intro', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+4}, tag:'very_good' },
-        { text:'Posso pular detalhes pra não tomar seu tempo e já marcar a data?', next:'tabulacao_intro', effects:{empatia:-1,resolucao:0,tempo:+2,satisf:-4}, tag:'trap_time' }
+        { text:'Explico as condições e, se fizer sentido, podemos combinar até o dia XX?', next:'tabulacao_intro', effects:{empatia:+1,resolucao:-1,tempo:+1,satisf:+4}, tag:'very_good' },
+        { text:'Posso pular detalhes pra não tomar seu tempo e já marcar a data para hoje?', next:'tabulacao_intro', effects:{empatia:-1,resolucao:0,tempo:+2,satisf:-4}, tag:'trap_time' }
       ]
     },
     tabulacao_intro:{
