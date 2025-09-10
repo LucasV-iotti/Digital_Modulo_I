@@ -112,6 +112,7 @@ const MISSAO_I = {
       ]
     },
     cadok_confirm:{
+       agentAuto:'Preferências e dados atualizados com sucesso (CadOK).',
       customerVariants:{
         happy:'Ótimo! Podemos continuar.',
         neutral:'Ótimo, vou ficar no aguardo do envio.',
@@ -124,7 +125,7 @@ const MISSAO_I = {
     },
 
     tabulacao_intro:{
-      
+      agentAuto:'Antes de encerrar, vou registrar o atendimento (tabulação) com clareza para continuidade quando precisar.',
       customerVariants:{
         happy:'Legal! O que você vai registrar?',
         neutral:'Ok. O que será registrado?',
