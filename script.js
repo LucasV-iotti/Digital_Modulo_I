@@ -337,7 +337,7 @@ function startScenario(){
     typing(true);
     setTimeout(()=>{
       typing(false);
-      renderAgentMessage('Olá [Nome], eu sou [Agente] e estou aqui para te ajudar.');
+      renderAgentMessage('Olá [Nome], eu sou [Agente] do Santander e estou aqui para te ajudar.');
       renderOptions(nodeByKey(state.currentNodeKey).options);
       updateFeedbackPanel();
     }, 500);
