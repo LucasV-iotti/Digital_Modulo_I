@@ -117,7 +117,7 @@ const MISSAO_I = {
         neutral:'Certo. E agora?',
         annoyed:'Tá. E depois?',
         rude:'Beleza. Segue.'
-        agenteAuto: 'Preferências e dados atualizados com sucesso (CadOK).'
+        
       },
       options:[
         { text:'Vou registrar o atendimento (tabulação) e seguimos para encerrar.', next:'tabulacao_intro', effects:{resolucao:+1,tempo:+1,satisf:+3}, tag:'ok' }
