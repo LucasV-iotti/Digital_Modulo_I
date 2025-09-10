@@ -40,7 +40,7 @@ const MISSAO_I = {
     abordagem_inicio_pf:{
       customerVariants:{
         happy:'Oi! Tudo bem? Recebi sua mensagem. Sobre o que se trata? 😊',
-        neutral:'Eu sou [nome], preciso de auxílio com meu débito.',
+        neutral:'Eu sou [Nome], preciso de auxílio com meu débito.',
         annoyed:'Oi. Fala direto, por favor. Tô sem tempo.',
         rude:'Diz logo o que é. Não posso perder tempo.'
       },
@@ -368,7 +368,7 @@ function handleNegotiationAutoReply(opt) {
   const tone = state.satisfaction >= 75 ? 'happy' : state.satisfaction >= 50 ? 'neutral' : state.satisfaction >= 25 ? 'annoyed' : 'rude';
   let response = '';
   if (tone === 'happy')        response = 'Perfeito! Aceito a proposta. 😊';
-  else if (tone === 'neutral') response = 'Ok, podemos seguir com essa proposta.';
+  else if (tone === 'neutral') response = 'Ok, pode detalhar a proposta.';
   else if (tone === 'annoyed') response = 'Seja breve, por favor.';
   else                         response = 'Se for pra falar, seja direto.';
 
