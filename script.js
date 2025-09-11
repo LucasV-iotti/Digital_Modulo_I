@@ -125,7 +125,7 @@ const MISSAO_I = {
       options:[
         { text:'É uma condição especial válida somente hoje, vou passar os detalhes, aguarde um momento.', next:'proposta_resposta', effects:{resolucao:+1,tempo:+1,satisf:+4}, tag:'best' },
         { text:'Seguimos rápido: se fechar hoje, te passo a condição, senão perde a oportunidade.', next:'friction_tom', effects:{empatia:-3,resolucao:-1,tempo:0,satisf:-16}, tag:'trap_pressure' },
-        { text:'Vou explico as condições e, se fizer sentido, combinamos até o dia XX?', next:'proposta_resposta', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+4}, tag:'very_good' },
+        { text:'Vou explicar as condições e, se fizer sentido, combinamos até o dia XX?', next:'proposta_resposta', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+4}, tag:'very_good' },
         { text:'Posso pular detalhes pra não tomar seu tempo e já marcar o pagamento?', next:'proposta_resposta', effects:{empatia:-1,resolucao:0,tempo:+2,satisf:-4}, tag:'trap_time' }
       ]
     },
