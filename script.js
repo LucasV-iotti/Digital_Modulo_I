@@ -87,16 +87,16 @@ const MISSAO_I = {
   nodes:{
     abordagem_inicio_pf:{
       customerVariants:{
-        happy:'Oi! Tudo bem? Recebi sua mensagem. Sobre o que se trata? 😊',
-        neutral:'Oi. Em que posso ajudar?',
+         happy:'Oi! Tudo bem? Recebi sua mensagem. Sobre o que se trata? 😊',
+        neutral:'Eu sou [Nome], preciso de auxílio com meu débito.',
         annoyed:'Oi. Fala direto, por favor. Tô sem tempo.',
         rude:'Diz logo o que é. Não posso perder tempo.'
       },
       options:[
-        { text:'Claro! Posso te apresentar rapidamente a oportunidade e, se fizer sentido, seguimos?', next:'oferta_negociacao', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+5}, tag:'best' },
-        { text:'Posso resumir a oferta e depois alinhamos os próximos passos?', next:'oferta_negociacao', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+4}, tag:'very_good' },
-        { text:'Posso pular direto para a proposta?', next:'oferta_negociacao', effects:{empatia:0,resolucao:+1,tempo:+1,satisf:+1}, tag:'ok' },
-        { text:'Vamos direto: diga o problema agora e depois eu vejo o resto.', next:'friction_tom', effects:{empatia:-2,resolucao:+1,tempo:+1,satisf:-8}, tag:'trap_tone' }
+        { text:'Posso te apresentar rapidamente uma oportunidade e, se fizer sentido, seguimos.', next:'oferta_negociacao', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+5}, tag:'best' },
+        { text:'Posso te passar a oferta disponível e depois alinhamos os próximos passos.', next:'oferta_negociacao', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+4}, tag:'very_good' },
+        { text:'Vou pular direto para a proposta e você me dá o seu ok.', next:'oferta_negociacao', effects:{empatia:0,resolucao:+1,tempo:+1,satisf:0}, tag:'ok' },
+        { text:'Vamos ser diretos: Você vai querer pagar?', next:'friction_tom', effects:{empatia:-2,resolucao:+1,tempo:+1,satisf:-8}, tag:'trap_tone' }
       ]
     },
 
@@ -118,62 +118,62 @@ const MISSAO_I = {
     oferta_negociacao:{
       customerVariants:{
         happy:'Claro, pode explicar. 😊',
-        neutral:'Pode falar.',
+        neutral:'Qual seria a proposta?',
         annoyed:'Seja direto, por favor.',
         rude:'Fala logo.'
       },
       options:[
-        { text:'Tenho uma condição especial válida até a data combinada. Posso detalhar e seguimos?', next:'proposta_resposta', effects:{resolucao:+1,tempo:+1,satisf:+4}, tag:'best' },
+        { text:'Tenho uma condição especial válida até hoje. Posso detalhar e seguimos.', next:'proposta_resposta', effects:{resolucao:+1,tempo:+1,satisf:+4}, tag:'best' },
         { text:'Seguimos rápido: se fechar hoje, te passo a condição, senão perde a oportunidade.', next:'friction_tom', effects:{empatia:-3,resolucao:-1,tempo:0,satisf:-16}, tag:'trap_pressure' },
-        { text:'Explico as condições e, se fizer sentido, combinamos uma data realista?', next:'proposta_resposta', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+4}, tag:'very_good' },
-        { text:'Posso pular detalhes pra não tomar seu tempo e já marcar a data?', next:'proposta_resposta', effects:{empatia:-1,resolucao:0,tempo:+2,satisf:-4}, tag:'trap_time' }
+        { text:'Explico as condições e, se fizer sentido, combinamos até o dia XX?', next:'proposta_resposta', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+4}, tag:'very_good' },
+        { text:'Posso pular detalhes pra não tomar seu tempo e já marcar o pagamento?', next:'proposta_resposta', effects:{empatia:-1,resolucao:0,tempo:+2,satisf:-4}, tag:'trap_time' }
       ]
     },
 
     proposta_resposta:{
       customerVariants:{
         happy:'Perfeito! Aceito a proposta. 😊',
-        neutral:'Ok, podemos seguir com essa proposta.',
+        neutral:'E qual seria a proposta?.',
         annoyed:'Seja objetivo, por favor.',
         rude:'Se for pra falar, seja direto.'
       },
       options:[
-        { text:'Perfeito, [Nome]! Proposta: condição especial válida até a data combinada, envio pelo seu canal preferido. Posso registrar?', next:'cadok_intro', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+5}, tag:'best' },
-        { text:'Resumo da proposta: condição especial + prazo alinhado. Te envio por WhatsApp/e-mail e seguimos. Pode ser?', next:'cadok_intro', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+4}, tag:'very_good' },
-        { text:'Proposta: podemos fechar hoje? Senão perdemos a condição.', next:'cadok_intro', effects:{empatia:-2,resolucao:-1,tempo:0,satisf:-10}, tag:'trap_pressure' },
-        { text:'Te envio um resumo da proposta e você valida depois. Tudo bem?', next:'cadok_intro', effects:{empatia:0,resolucao:0,tempo:+1,satisf:+1}, tag:'ok' }
+        { text:'Perfeito, [Nome]! Tenho uma condição especial válida até hoje e te envio pelo seu WhatsApp e E-mail.', next:'cadok_intro', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+5}, tag:'best' },
+        { text:'A proposta é: condição especial + prazo alinhado. Te envio por WhatsApp/e-mail e seguimos.', next:'cadok_intro', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+4}, tag:'very_good' },
+        { text:'Eu fecho o acordo hoje. Senão você perde a condição.', next:'cadok_intro', effects:{empatia:-2,resolucao:-1,tempo:0,satisf:-10}, tag:'trap_pressure' },
+        { text:'Fecho o acordo e te envio um resumo por e-mail da proposta e você valida depois.', next:'cadok_intro', effects:{empatia:0,resolucao:0,tempo:+1,satisf:+1}, tag:'ok' }
       ]
     },
 
     cadok_intro:{
       customerVariants:{
-        happy:'Prefiro WhatsApp à tarde. Meu e-mail continua o mesmo.',
-        neutral:'WhatsApp. Pode ser à tarde.',
-        annoyed:'Só WhatsApp. Evita ligar.',
-        rude:'Só manda no Whats.'
+        happy:'Eu prefiro o WhatsApp. Meu e-mail continua o mesmo.',
+        neutral:'Ótimo! Me envia das duas formas, por favor!',
+        annoyed:'Só WhatsApp.',
+        rude:'Whats.'
       },
       options:[
-        { text:'Anotado! Registrei WhatsApp à tarde como preferido. Posso confirmar e-mail (terminando em @exemplo.com) e celular final 7788?', next:'cadok_confirm', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+6}, tag:'best' },
-        { text:'Perfeito. Confirma pra mim o e-mail completo e o número de celular com DDD?', next:'cadok_confirm', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+4}, tag:'very_good' },
+        { text:'Atualizando seu cadastro: seu e-mail é @exemplo.com e WhatsApp com celular final 7788?', next:'cadok_confirm', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+6}, tag:'best' },
+        { text:'Perfeito. Vou mandar agora mesmo com as informações que tenho aqui', next:'cadok_confirm', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+4}, tag:'very_good' },
         { text:'Pra validar, manda os 6 últimos do cartão e o CPF inteiro (política interna).', next:'alerta_lgpd', effects:{empatia:-3,resolucao:-1,tempo:0,satisf:-18}, tag:'trap_compliance' },
         { text:'Vamos seguindo sem checar isso agora pra ganhar tempo.', next:'tabulacao_intro', effects:{empatia:-1,resolucao:+1,tempo:+1,satisf:-6}, tag:'trap_skip' }
       ]
     },
     cadok_confirm:{
-      agentAuto:'Preferências e dados atualizados com sucesso (CadOK).',
+      agentAuto:'Dados atualizados com sucesso (CadOK).',
       customerVariants:{
         happy:'Ótimo! Podemos continuar.',
-        neutral:'Certo. E agora?',
+        neutral:'Muito obrigado pelo acordo',
         annoyed:'Tá. E depois?',
         rude:'Beleza. Segue.'
       },
       options:[
-        { text:'Fechado! Vou registrar o atendimento (tabulação) e seguimos para encerrar.', next:'tabulacao_intro', effects:{resolucao:+1,tempo:+1,satisf:+3}, tag:'ok' }
+        { text:'Recapitulando antes de encerrarmos o atendimento, as condições de acordo foram: (Vendimento do Acordo | Valor de Pagamento | Quantidade de Parcelas)', next:'tabulacao_intro', effects:{resolucao:+1,tempo:+1,satisf:+3}, tag:'ok' }
       ]
     },
 
     tabulacao_intro:{
-      agentAuto:'Antes de encerrar, vou registrar o atendimento (tabulação) com clareza para continuidade quando precisar.',
+      agentAuto:'Vou registrar a nossa negociação com clareza para continuidade quando precisar.',
       customerVariants:{
         happy:'Legal! O que você vai registrar?',
         neutral:'Ok. O que será registrado?',
@@ -182,9 +182,9 @@ const MISSAO_I = {
       },
       options:[
         { text:'Motivo do contato, condições oferecidas, objeções, acordo e próximos passos.', next:'finalizacao_intro', effects:{resolucao:+1,tempo:+1,satisf:+6}, tag:'best' },
-        { text:'Motivo do contato, condições e próximos passos.', next:'finalizacao_intro', effects:{resolucao:0,tempo:+1,satisf:+2}, tag:'partial' },
-        { text:'Motivo do contato, objeções e acordo.', next:'finalizacao_intro', effects:{resolucao:0,tempo:+1,satisf:+1}, tag:'partial' },
-        { text:'Tabular só “cliente orientado”.', next:'finalizacao_intro', effects:{resolucao:-1,tempo:0,satisf:-8}, tag:'trap_short' }
+        { text:'Motivo do contato, condições, próximos passos, conversas detalhadas.', next:'finalizacao_intro', effects:{resolucao:0,tempo:+1,satisf:+2}, tag:'partial' },
+        { text:'Motivo do contato, suas objeções e detalhamento da negociação.', next:'finalizacao_intro', effects:{resolucao:0,tempo:+1,satisf:+1}, tag:'partial' },
+        { text:'Tabular só “cliente orientado” e escrever o que aconteceu no nosso contato.', next:'finalizacao_intro', effects:{resolucao:-1,tempo:0,satisf:-8}, tag:'trap_short' }
       ]
     },
 
