@@ -404,12 +404,12 @@ function handleNegotiationAutoReply(opt) {
   if (state.currentNodeKey !== 'oferta_negociacao') return false;
   const allow = new Set(['best','very_good','ok']);
   if (!allow.has(opt?.tag)) return false;
-  const tone = state.satisfaction >= 75 ? 'happy' : state.satisfaction >= 50 ? 'neutral' : state.satisfaction >= 25 ? 'annoyed' : 'rude';
+  const tone = state.empatia >= 5 ? 'happy' : state.empatia >= 3 ? 'neutral' : state.empatia >= 1 ? 'annoyed' : 'rude';
   let response = '';
-  if (tone === 'happy')        response = 'Perfeito! Aceito a proposta. 😊';
-  else if (tone === 'neutral') response = 'Ok, podemos seguir com essa proposta.';
-  else if (tone === 'annoyed') response = 'Seja breve, por favor.';
-  else                         response = 'Se for pra falar, seja direto.';
+  if (tone === 'happy')        response = 'Fico no aguardo. 😊',
+  else if (tone === 'neutral') response = 'Quais seriam as condições.',
+  else if (tone === 'annoyed') response = 'Seja objetivo, por favor.',
+  else                         response = 'Se for pra falar, seja direto.'
 
   typing(true);
   setTimeout(() => {
