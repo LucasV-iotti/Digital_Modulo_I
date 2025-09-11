@@ -150,7 +150,7 @@ const MISSAO_I = {
         happy:'Eu prefiro o WhatsApp. Meu e-mail continua o mesmo.',
         neutral:'Ótimo! Me envia das duas formas, por favor!',
         annoyed:'Manda no WhatsApp e depois te dou uma resposta.',
-        rude:'Whats.'
+        rude:'Manda logo no WhatsApp e eu me viro.'
       },
       options:[
         { text:'Atualizando seu cadastro: seu e-mail é @exemplo.com e WhatsApp com celular final 7788?', next:'cadok_confirm', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+6}, tag:'best' },
