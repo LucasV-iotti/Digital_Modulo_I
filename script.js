@@ -90,9 +90,9 @@ const MISSAO_I = {
         rude:'Diz logo o que é. Não posso perder tempo.'
       },
       options:[
-        { text:'Posso te apresentar rapidamente uma oportunidade e, se fizer sentido, seguimos.', next:'oferta_negociacao', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+5}, tag:'best' },
+        { text:'Posso te apresentar rapidamente uma oportunidade e, se fizer sentido, fechamos o acordo.', next:'oferta_negociacao', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+5}, tag:'best' },
         { text:'Posso te passar a oferta disponível e depois alinhamos os próximos passos.', next:'oferta_negociacao', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+4}, tag:'very_good' },
-        { text:'Vou pular direto para a proposta e você me dá o seu ok.', next:'oferta_negociacao', effects:{empatia:0,resolucao:+1,tempo:+1,satisf:0}, tag:'ok' },
+        { text:'Vou pular direto para a proposta e você me dá o seu ok.', next:'oferta_negociacao', effects:{empatia:-1,resolucao:+1,tempo:+1,satisf:0}, tag:'ok' },
         { text:'Vamos ser diretos: Você vai querer pagar?', next:'friction_tom', effects:{empatia:-2,resolucao:+1,tempo:+1,satisf:-8}, tag:'trap_tone' }
       ]
     },
@@ -115,22 +115,22 @@ const MISSAO_I = {
     oferta_negociacao:{
       customerVariants:{
         happy:'Claro, pode explicar. 😊',
-        neutral:'Qual seria a proposta?',
-        annoyed:'Seja direto, por favor.',
+        neutral:'Qual seria essa oportunidade?',
+        annoyed:'Qual proposta?',
         rude:'Fala logo.'
       },
       options:[
-        { text:'Tenho uma condição especial válida até hoje. Posso detalhar e seguimos.', next:'proposta_resposta', effects:{resolucao:+1,tempo:+1,satisf:+4}, tag:'best' },
+        { text:'É uma condição especial válida somente hoje, vou passar os detalhes, aguarde um momento.', next:'proposta_resposta', effects:{empatia:+5,resolucao:+2,tempo:+1,satisf:+4}, tag:'best' },
         { text:'Seguimos rápido: se fechar hoje, te passo a condição, senão perde a oportunidade.', next:'friction_tom', effects:{empatia:-3,resolucao:-1,tempo:0,satisf:-16}, tag:'trap_pressure' },
-        { text:'Explico as condições e, se fizer sentido, combinamos até o dia XX?', next:'proposta_resposta', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+4}, tag:'very_good' },
+        { text:'Vou explicar as condições e, se fizer sentido, combinamos até o dia XX?', next:'proposta_resposta', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+3}, tag:'very_good' },
         { text:'Posso pular detalhes pra não tomar seu tempo e já marcar o pagamento?', next:'proposta_resposta', effects:{empatia:-1,resolucao:0,tempo:+2,satisf:-4}, tag:'trap_time' }
       ]
     },
 
     proposta_resposta:{
       customerVariants:{
-        happy:'Perfeito! Aceito a proposta. 😊',
-        neutral:'E qual seria a proposta?.',
+        happy:'Fico no aguardo. 😊',
+        neutral:'Quais seriam as condições.',
         annoyed:'Seja objetivo, por favor.',
         rude:'Se for pra falar, seja direto.'
       },
@@ -364,7 +364,7 @@ function startScenario(){
     typing(true);
     setTimeout(()=>{
       typing(false);
-      renderAgentMessage('Olá [Nome], eu sou [Agente] e estou aqui para te ajudar.');
+      renderAgentMessage('Olá [Nome], eu sou [Agente] do Santander e estou aqui para te ajudar.');
       renderOptions(nodeByKey(state.currentNodeKey).options);
       updateFeedbackPanel();
     }, 500);
