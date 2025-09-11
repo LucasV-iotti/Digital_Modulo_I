@@ -149,7 +149,7 @@ const MISSAO_I = {
       customerVariants:{
         happy:'Eu prefiro o WhatsApp. Meu e-mail continua o mesmo.',
         neutral:'Ótimo! Me envia das duas formas, por favor!',
-        annoyed:'Só WhatsApp.',
+        annoyed:'Manda no WhatsApp e depois te dou uma resposta.',
         rude:'Whats.'
       },
       options:[
