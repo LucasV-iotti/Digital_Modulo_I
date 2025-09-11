@@ -1,4 +1,3 @@
-
 // Atendimento Pro — Contato Digital (V7.1.4 — Hard padrão)
 // Update7: Primeira mensagem é do CLIENTE; em seguida, mensagem do AGENTE: "Olá [Nome], eu sou [Agente] e estou aqui para te ajudar".
 // Mantém: ordem Abordagem → Negociação → CadOK → Tabulação → Finalização; proposta escolhida pelo jogador; fix da duplicação.
