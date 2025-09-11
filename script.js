@@ -141,7 +141,7 @@ const MISSAO_I = {
         { text:'Perfeito, [Nome]! Tenho uma condição especial válida até hoje e te envio pelo seu WhatsApp e E-mail.', next:'cadok_intro', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+5}, tag:'best' },
         { text:'A proposta é: condição especial + prazo alinhado. Te envio por WhatsApp/e-mail e seguimos.', next:'cadok_intro', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+4}, tag:'very_good' },
         { text:'Eu fecho o acordo hoje. Senão você perde a condição.', next:'cadok_intro', effects:{empatia:-2,resolucao:-1,tempo:0,satisf:-10}, tag:'trap_pressure' },
-        { text:'Fecho o acordo e te envio um resumo por e-mail da proposta e você valida depois.', next:'cadok_intro', effects:{empatia:0,resolucao:0,tempo:+1,satisf:+1}, tag:'ok' }
+        { text:'Fecho o acordo e te envio um resumo da proposta e você valida depois.', next:'cadok_intro', effects:{empatia:0,resolucao:0,tempo:+1,satisf:+1}, tag:'ok' }
       ]
     },
 
@@ -149,12 +149,12 @@ const MISSAO_I = {
       customerVariants:{
         happy:'Eu prefiro o WhatsApp. Meu e-mail continua o mesmo.',
         neutral:'Ótimo! Me envia das duas formas, por favor!',
-        annoyed:'Manda no WhatsApp e depois te dou uma resposta.',
-        rude:'Manda logo no WhatsApp e eu me viro.'
+        annoyed:'Tá! Depois te dou uma resposta.',
+        rude:'Manda logo no e eu me viro.'
       },
       options:[
         { text:'Atualizando seu cadastro: seu e-mail é @exemplo.com e WhatsApp com celular final 7788?', next:'cadok_confirm', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+6}, tag:'best' },
-        { text:'Perfeito. Vou mandar agora mesmo com as informações que tenho aqui', next:'cadok_confirm', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+4}, tag:'very_good' },
+        { text:'Perfeito. Vou mandar agora mesmo com as informações que tenho aqui', next:'tabulacao_intro', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+4}, tag:'very_good' },
         { text:'Pra validar, manda os 6 últimos do cartão e o CPF inteiro (política interna).', next:'alerta_lgpd', effects:{empatia:-3,resolucao:-1,tempo:0,satisf:-18}, tag:'trap_compliance' },
         { text:'Vamos seguindo sem checar isso agora pra ganhar tempo.', next:'tabulacao_intro', effects:{empatia:-1,resolucao:+1,tempo:+1,satisf:-6}, tag:'trap_skip' }
       ]
