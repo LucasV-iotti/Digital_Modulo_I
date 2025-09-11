@@ -1,4 +1,3 @@
-
 // Atendimento Pro — Contato Digital (V7.1.4 — Hard padrão)
 // Update8: Tela de REVISÃO antes da pontuação final (transcrição + decisões + visão geral)
 // Mantém: ordem Abordagem → Negociação → CadOK → Tabulação → Finalização; proposta escolhida pelo jogador; fix da duplicação; cliente fala primeiro.
