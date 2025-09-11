@@ -94,7 +94,7 @@ const MISSAO_I = {
         { text:'Posso te passar a oferta disponível e depois alinhamos os próximos passos.', next:'oferta_negociacao', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+4}, tag:'very_good' },
         { text:'Vou pular direto para a proposta e você me dá o seu ok.', next:'oferta_negociacao', effects:{empatia:-1,resolucao:+1,tempo:+1,satisf:0}, tag:'ok' },
         { text:'Vamos ser diretos: Você vai querer pagar?', next:'friction_tom', effects:{empatia:-2,resolucao:+1,tempo:+1,satisf:-8}, tag:'trap_tone' }
-      ]
+    ]
     },
 
     alerta_lgpd:{
@@ -122,15 +122,15 @@ const MISSAO_I = {
       options:[
         { text:'É uma condição especial válida somente hoje, vou passar os detalhes, aguarde um momento.', next:'proposta_resposta', effects:{empatia:+5,resolucao:+2,tempo:+1,satisf:+4}, tag:'best' },
         { text:'Seguimos rápido: se fechar hoje, te passo a condição, senão perde a oportunidade.', next:'friction_tom', effects:{empatia:-3,resolucao:-1,tempo:0,satisf:-16}, tag:'trap_pressure' },
-        { text:'Vou explicar as condições e, se fizer sentido, combinamos até o dia XX?', next:'proposta_resposta', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+3}, tag:'very_good' },
         { text:'Posso pular detalhes pra não tomar seu tempo e já marcar o pagamento?', next:'proposta_resposta', effects:{empatia:-1,resolucao:0,tempo:+2,satisf:-4}, tag:'trap_time' }
+        { text:'Vou explicar as condições e, se fizer sentido, combinamos até o dia XX?', next:'proposta_resposta', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+4}, tag:'very_good' },
       ]
     },
 
     proposta_resposta:{
       customerVariants:{
-        happy:'Fico no aguardo. 😊',
-        neutral:'Quais seriam as condições.',
+       happy:'Fico no aguardo. 😊',
+        neutral:'Fico no aguardo com os detalhes',
         annoyed:'Seja objetivo, por favor.',
         rude:'Se for pra falar, seja direto.'
       },
@@ -364,7 +364,7 @@ function startScenario(){
     typing(true);
     setTimeout(()=>{
       typing(false);
-      renderAgentMessage('Olá [Nome], eu sou [Agente] do Santander e estou aqui para te ajudar.');
+     renderAgentMessage('Olá [Nome], eu sou [Agente] do Santander e estou aqui para te ajudar.');
       renderOptions(nodeByKey(state.currentNodeKey).options);
       updateFeedbackPanel();
     }, 500);
@@ -404,12 +404,12 @@ function handleNegotiationAutoReply(opt) {
   if (state.currentNodeKey !== 'oferta_negociacao') return false;
   const allow = new Set(['best','very_good','ok']);
   if (!allow.has(opt?.tag)) return false;
-  const tone = state.empatia >= 5 ? 'happy' : state.empatia >= 3 ? 'neutral' : state.empatia >= 1 ? 'annoyed' : 'rude';
+  const tone = state.satisfaction >= 75 ? 'happy' : state.satisfaction >= 50 ? 'neutral' : state.satisfaction >= 25 ? 'annoyed' : 'rude';
   let response = '';
-  if (tone === 'happy')        response = 'Fico no aguardo. 😊',
-  else if (tone === 'neutral') response = 'Quais seriam as condições.',
-  else if (tone === 'annoyed') response = 'Seja objetivo, por favor.',
-  else                         response = 'Se for pra falar, seja direto.'
+  if (tone === 'happy')        response = 'Perfeito! Aceito a proposta. 😊';
+  else if (tone === 'neutral') response = 'Ok, podemos seguir com essa proposta.';
+  else if (tone === 'annoyed') response = 'Seja breve, por favor.';
+  else                         response = 'Se for pra falar, seja direto.';
 
   typing(true);
   setTimeout(() => {
