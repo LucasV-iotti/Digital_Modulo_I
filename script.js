@@ -105,7 +105,7 @@ const MISSAO_I = {
         rude:'Fala logo que propostas são.'
       },
       options:[
-        { text:'Temos uma oportunidade válida para hoje, sendo um pagamento com desconto!', next:'oferta_negociacao', effects:{empatia:+2,resolucao:+2,tempo:+1,satisf:+25}, tag:'best' },
+        { text:'Temos uma oportunidade válida para hoje, sendo um pagamento com desconto!', next:'negocio_ok', effects:{empatia:+2,resolucao:+2,tempo:+1,satisf:+25}, tag:'best' },
         { text:'Temos opções de acordo à vista com desconto ou parcelamento, qual prefere?', next:'negociacao_neutra', effects:{empatia:+1,resolucao:+1,tempo:+1,satisf:+15}, tag:'very_good' },
         { text:'Nós conseguimos gerar o boleto e envio por aqui. Consegue pagar hoje?', next:'alerta_boleto', effects:{empatia:0,resolucao:-2,tempo:+1,satisf:-10}, tag:'skip' },
         { text:'A proposta é simples, ou você realiza o pagamento ou a dívida aumenta.', next:'alerta_grosseria', effects:{empatia:-2,resolucao:-2,tempo:+1,satisf:-25}, tag:'trap_pressure' }
@@ -139,7 +139,7 @@ const MISSAO_I = {
         { text:'Então vai ficar sem pagar, pois você tem duas escolhe: você aceita e paga ou fica em débito!', next:'alerta_grosseria', effects:{empatia:-2,resolucao:-2,tempo:+1,satisf:-20}, tag:'trap_pressure' }
       ]
     },
-    oferta_negociacao:{
+    negocio_ok:{
       customerVariants:{
         happy:'É exatamente o que estou procurando! Me explica melhor sobre o pagamento 😁',
         neutral:'Me fala sobre o valor e data de pagamento, por favor.',
